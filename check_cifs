@@ -1,0 +1,5 @@
+#!/bin/sh
+
+echo '<<<cifs>>>'
+python check_mountcifs.py
+
