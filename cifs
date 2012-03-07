@@ -1,0 +1,37 @@
+def inventory_cifs_temp(checkname, info):
+   
+   type = ['mount.cifs','cifs']    
+   inventory = [] # return empty list: nothing found
+          
+   for line in info:
+     rctype = line[0]
+     rcpass = line[1]
+     mounted = line[2]
+
+     if rctype in type:
+       inventory.append( (rcpass, "",mounted) ) 
+   
+   return inventory
+
+def check_cifs_temp(item, params, info):
+   
+   type = ['mount.cifs','cifs']
+   mounted = False
+   aitem = ""
+   
+   for line in info:
+       if line[1] == item and line[0] in type:
+          mounted = True
+          aitem = line[1] 
+   
+   if mounted:
+       return (0, "OK - Mounted %s" %  aitem)
+   else:
+       return (2, "CRITICAL - no mount %s" %  aitem)
+       
+   return (3, "UNKNOWN - cifs %s not found in agent output" % item)
+
+
+# declare the check to Check_MK
+check_info['cifs.temp'] = \
+      (check_cifs_temp, "CIFS drive %s", 0, inventory_cifs_temp)
