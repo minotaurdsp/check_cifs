@@ -1,8 +1,8 @@
-
 #  Check_mk plugin for cifs monitoring on Linux  
 #
 #
 
+#### AGENT #####
 First step
 1. Copy file check_mountcifs.py  to your check_mk plugin directory /usr/lib/check_mk_agent/plugins
    If directory not exist mkdir -p /usr/lib/check_mk_agent/plugins
@@ -14,3 +14,14 @@ First step
 
   chmod +x check_mountcifs.py 
   chmod +x check_cifs
+
+###############
+
+
+
+#### SERVER ####
+
+1. copy cifs file to your check mk check directory  /usr/share/check_mk/checks/
+
+2. Check plugin
+   
